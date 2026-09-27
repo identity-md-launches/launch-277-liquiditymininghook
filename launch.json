@@ -1,0 +1,26 @@
+{
+  "kind": "univ4_hook",
+  "hook": {
+    "contract": "LiquidityMiningHook",
+    "constructorArgs": [
+      "0xE03A1074c86CFeDd5C142C4F04F1a1536e203543"
+    ],
+    "permissions": [
+      "afterAddLiquidity",
+      "afterRemoveLiquidity"
+    ]
+  },
+  "token": {
+    "contract": "FARMX",
+    "name": "Farm",
+    "symbol": "FARMX",
+    "decimals": 18
+  },
+  "pool": {
+    "pairedCurrency": "0x0000000000000000000000000000000000000000",
+    "fee": 3000,
+    "tickSpacing": 60,
+    "initialPrice": "79228162514264337593543950336"
+  },
+  "notes": "Technical description for the Sepolia native-ETH/FARMX launch. Sources: src/LiquidityMiningHook.sol and src/FARMX.sol; ABI exports: docs/abi/LiquidityMiningHook.json and docs/abi/FARMX.json. FARMX has no constructor arguments. The hook's sole argument is the approved Sepolia PoolManager. Only afterAddLiquidity and afterRemoveLiquidity are enabled; all other permissions, including return-delta permissions, are false. The constructor validates the hook address permission bits (0x0500); callbacks require PoolManager and return zero hook deltas. Pool currency0 is native ETH and currency1 is FARMX. initialPrice is decimal sqrtPriceX96 = 2^96, giving a raw currency1/currency0 ratio of 1 at tick 0. This adopts the explicit price assumption in script/LaunchParameters.sol and the accepted offline launch rehearsal; the approved brief did not specify a numeric price. The rehearsal seeds only FARMX over ticks -887220 to 0 with empty hookData and tests the first buy into a pool holding no ETH. Reward accounting is per PoolId and streams currency1 over 30 days, pro rata to enrolled liquidity-seconds. A positive liquidity add with exactly one canonical, nonzero ABI address in hookData fixes the position key's beneficiary; subsequent additions accrue to it. Earlier unenrolled liquidity, including the factory seed, earns nothing. hookData is unauthenticated; safe enrollment relies on the position controller. Removal caps stake at the remaining position liquidity; fee collection leaves stake unchanged. Out-of-range liquidity earns equally. NFT transfers do not change the beneficiary, who alone can claim. Permissionless fund measures tokens received and restarts the remaining stream plus idle funds, including with amount zero. Zero-stake emissions and duration-division remainder accrue to idle for a later fund; accumulator rounding dust remains reserved. The hook accepts no ETH, and non-native pool liquidity callbacks have no accounting effect. This manifest does not set launch policy or assert independent review, attestation, admission or deployment. Services supply policy and signed artifact linkage after this stage. Farm is a Sepolia test toy; its token and reward pots have no value and promise no return."
+}
