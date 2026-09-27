@@ -1,0 +1,38 @@
+[
+  {
+    "repository": "https://github.com/Uniswap/v4-core",
+    "commit": "59d3ecf53afa9264a16bba0e38f4c5d2231f80bc",
+    "path": "lib/v4-core",
+    "included": "src and licenses"
+  },
+  {
+    "repository": "https://github.com/Uniswap/v4-periphery",
+    "commit": "9969eec44cfdf07e24b41de47f40276a58401976",
+    "path": "lib/v4-periphery",
+    "included": "src and licenses"
+  },
+  {
+    "repository": "https://github.com/foundry-rs/forge-std",
+    "commit": "3e2295d50379faa6c8e9859d51b1f97a69a830d1",
+    "path": "lib/forge-std",
+    "included": "src and licenses"
+  },
+  {
+    "repository": "https://github.com/OpenZeppelin/openzeppelin-contracts",
+    "commit": "dbb6104ce834628e473d2173bbc9d47f81a9eec3",
+    "path": "lib/openzeppelin-contracts",
+    "included": "contracts and licenses"
+  },
+  {
+    "repository": "https://github.com/Uniswap/permit2",
+    "commit": "cc56ad0f3439c502c246fc5cfcc3db92bb8b7219",
+    "path": "lib/permit2",
+    "included": "src and licenses"
+  },
+  {
+    "repository": "https://github.com/transmissions11/solmate",
+    "commit": "4b47a19038b798b4a33d9749d25e570443520647",
+    "path": "lib/solmate",
+    "included": "src and licenses"
+  }
+]
